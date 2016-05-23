@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg936\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset134 STHeitiSC-Light;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red217\green11\blue0;\red132\green221\blue253;\red100\green56\blue32;
+\red196\green26\blue22;\red92\green38\blue153;\red46\green13\blue110;\red28\green0\blue207;\red170\green13\blue145;
+\red63\green110\blue116;\red38\green71\blue75;\red102\green177\blue50;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab1155
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f0\b\fs96 \cf2 \cb3 \CocoaLigature0 AFNetworking
+\f1 \'c9\'cf\'b4\'ab
+\f0\fs48 \cf2 \cb3 +
+\f1 \'bd\'f8\'b6\'c8\'cc\'f5
+\fs36 \cb1 \ul \'b5\'da\'c8\'fd\'b7\'bd
+\f2\b0\fs28 \cf0 \ulnone \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f3\fs24 \cf0 \CocoaLigature1 {{\NeXTGraphic 屏幕快照 2016-05-21 下午2.18.50.png \width4440 \height1280
+}�}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+\cf0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f2\fs28 \cf4 \CocoaLigature0 #import \cf5 "AFNetworking.h"\cf0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf6     UIProgressView\cf0  *pView = [[\cf6 UIProgressView\cf0  \cf7 alloc\cf0 ]\cf7 init\cf0 ];\
+    pView.\cf6 frame\cf0  = \cf7 CGRectMake\cf0 (\cf8 0\cf0 , \cf8 100\cf0 , \cf8 320\cf0 , \cf8 20\cf0 );\
+    pView.\cf6 progress\cf0  = \cf8 0\cf0 ;\
+    [\cf9 self\cf0 .\cf6 view\cf0  \cf7 addSubview\cf0 :pView];\
+    \cf9 __block\cf0  \cf6 UIProgressView\cf0  *prView = pView;\
+    \cf10 AFURLSessionManager\cf0  *manager = [[\cf10 AFURLSessionManager\cf0  \cf7 alloc\cf0 ]\cf11 initWithSessionConfiguration\cf0 :[\cf6 NSURLSessionConfiguration\cf0  \cf7 defaultSessionConfiguration\cf0 ]];\
+    \cf6 NSMutableURLRequest\cf0  *reqeust = [\cf6 NSMutableURLRequest\cf0  \cf7 requestWithURL\cf0 :[\cf6 NSURL\cf0  \cf7 URLWithString\cf0 :\cf5 @"http://localhost:8080/UploadFileServer/up"\cf0 ]];\
+    [reqeust \cf7 setHTTPMethod\cf0 :\cf5 @"POST"\cf0 ];\
+    [reqeust \cf7 setHTTPBody\cf0 :[\cf6 NSData\cf0  \cf7 dataWithContentsOfURL\cf0 :[\cf6 NSURL\cf0  \cf7 URLWithString\cf0 :[[\cf6 NSBundle\cf0  \cf7 mainBundle\cf0 ]\cf7 pathForResource\cf0 :\cf5 @"a"\cf0  \cf7 ofType\cf0 :\cf5 @"jpg"\cf0 ]]]];\
+    \cf6 NSURLSessionUploadTask\cf0  *uploadTask =\
+    [manager \cf11 uploadTaskWithRequest\cf0 :reqeust \cf11 fromFile\cf0 :[\cf6 NSURL\cf0  \cf7 URLWithString\cf0 :[[\cf6 NSBundle\cf0  \cf7 mainBundle\cf0 ]\cf7 pathForResource\cf0 :\cf5 @"a"\cf0  \cf7 ofType\cf0 :\cf5 @"jpg"\cf0 ]] \cf11 progress\cf0 :^(\cf6 NSProgress\cf0  * \cf9 _Nonnull\cf0  uploadProgress)\
+    \{\
+        prView.\cf6 observedProgress\cf0  = uploadProgress;\
+    \} \cf11 completionHandler\cf0 :^(\cf6 NSURLResponse\cf0  * \cf9 _Nonnull\cf0  response, \cf9 id\cf0   \cf9 _Nullable\cf0  responseObject, \cf6 NSError\cf0  * \cf9 _Nullable\cf0  error) \{\
+        \cf7 NSLog\cf0 (\cf5 @"response:%@,responseobject:%@ error:%@"\cf0 ,response,responseObject,error);\
+    \}];\
+    [uploadTask \cf7 resume\cf0 ];\
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f1 \cf12 ************************************************************************************************************************************************************************************************************************************************************************************************************************\
+}

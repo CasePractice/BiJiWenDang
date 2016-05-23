@@ -1,0 +1,466 @@
+{\rtf1\ansi\ansicpg936\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset134 STHeitiSC-Light;\f2\fswiss\fcharset0 Helvetica;
+\f3\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red196\green26\blue22;\red132\green221\blue253;\red217\green11\blue0;
+\red100\green56\blue32;\red170\green13\blue145;\red92\green38\blue153;\red102\green177\blue50;\red0\green116\blue0;
+\red46\green13\blue110;\red28\green0\blue207;\red38\green71\blue75;\red63\green110\blue116;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww29780\viewh18120\viewkind0
+\deftab1155
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f0\b\fs96 \cf2 \cb3 \CocoaLigature0 Masonry
+\f1\fs48 \cb1 \'b5\'da\'c8\'fd\'b7\'bd\
+\
+
+\f2 UIView+Masonry_ZL.h
+\f1 \
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f3\b0\fs36 \cf5 #import \cf2 <UIKit/UIKit.h>\cf0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\fs28 \cf6 @interface\cf0  UIView (Masonry_ZL)\
+-(\cf6 void\cf0 )distributeSpacingHorizontallyWith:(\cf7 NSArray\cf0  *)viewArray;\
+-(\cf6 void\cf0 )distributeSpacingVerticallyWith:(\cf7 NSArray\cf0  *)viewArray;\
+\cf6 @end
+\fs48 \cf0 \
+
+\f1\fs28 \cf8 \
+\
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f2\b\fs48 \cf2 UIView+Masonry_ZL.m
+\f1\b0\fs28 \cf8 \
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f3 \cf5 #import \cf2 "UIView+Masonry_ZL.h"\cf5 \
+#import \cf2 "Masonry.h"\cf5 \
+\cf6 @implementation\cf0  UIView (Masonry_ZL)\
+-(\cf6 void\cf0 )distributeSpacingHorizontallyWith:(\cf7 NSArray\cf0 *)viewArray\{\
+    \cf9 //
+\f1 \'b7\'b5\'bb\'d8\'b5\'c4\'ca\'c7\'d2\'bb\'b8\'f6\'bf\'c9\'b1\'e4\'ca\'fd\'d7\'e9\'a3\'ac\'b2\'ce\'ca\'fd\'ca\'c7\'d6\'b8\'d5\'e2\'b8\'f6\'ca\'fd\'d7\'e9\'b5\'c4\'b4\'e6\'b7\'c5\'d4\'aa\'cb\'d8\'b5\'c4\'ca\'fd\'c1\'bf\'a3\'ac\'d4\'da\'d2\'d1\'d6\'aa\'c4\'e3\'d2\'aa\'d3\'c3\'d5\'e2\'b8\'f6\'ca\'fd\'d7\'e9\'b4\'e6\'b7\'c5\'b6\'e0\'c9\'d9\'ca\'fd\'c1\'bf\'b5\'c4\'d4\'aa\'cb\'d8\'ca\'b1\'a3\'ac\'d3\'a6\'b8\'c3\'ca\'b9\'d3\'c3\'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8\'a3\'ac\'d5\'e2\'d1\'f9\'c4\'dc\'ca\'b9\'c4\'fa\'b8\'fc\'ba\'c3\'b5\'d8\'bf\'d8\'d6\'c6\'c4\'da\'b4\'e6\'ca\'b9\'d3\'c3\'c1\'bf\'a1\'a3
+\f3 \cf0 \
+    \cf7 NSMutableArray\cf0  *spacesMutableArray=[\cf7 NSMutableArray\cf0  \cf10 arrayWithCapacity\cf0 :viewArray.\cf7 count\cf0 +\cf11 1\cf0 ];\
+    \cf10 NSLog\cf0 (\cf2 @"spacesMutableArray====%@"\cf0 ,spacesMutableArray);\
+    \cf6 for\cf0  (\cf6 int\cf0  i=\cf11 0\cf0 ; i<viewArray.\cf7 count\cf0 +\cf11 1\cf0 ; ++i) \{\
+        \cf7 UIView\cf0  *myView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+        [spacesMutableArray \cf10 addObject\cf0 :myView];\
+        [\cf6 self\cf0  \cf10 addSubview\cf0 :myView];\
+        [myView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 width\cf0 .\cf12 equalTo\cf0 (myView.\cf13 mas_height\cf0 );\
+        \}];\
+    \}\
+    \cf7 UIView\cf0  *oneView=spacesMutableArray[\cf11 0\cf0 ];\
+    \cf6 __weak\cf0  \cf7 UIView\cf0  *weakView=\cf6 self\cf0 ;\
+    [oneView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 left\cf0 .\cf12 equalTo\cf0 (weakView.\cf13 mas_left\cf0 );\
+        make.\cf13 centerY\cf0 .\cf12 equalTo\cf0 (((\cf7 UIView\cf0  *)viewArray[\cf11 0\cf0 ]).\cf13 mas_centerY\cf0 );\
+    \}];\
+    \cf7 UIView\cf0 *lastSpaceView=oneView;\
+    \cf6 for\cf0  (\cf6 int\cf0  i=\cf11 0\cf0 ; i<viewArray.\cf7 count\cf0 ; ++i)\
+    \{\
+        \cf7 UIView\cf0  *changeView=viewArray[i];\
+        \cf7 UIView\cf0  *spaceView=spacesMutableArray[i+\cf11 1\cf0 ];\
+        [changeView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 left\cf0 .\cf12 equalTo\cf0 (lastSpaceView.\cf13 mas_right\cf0 );\
+        \}];\
+        [spaceView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 left\cf0 .\cf12 equalTo\cf0 (changeView.\cf13 mas_right\cf0 );\
+            make.\cf13 centerY\cf0 .\cf12 equalTo\cf0 (changeView.\cf13 mas_centerY\cf0 );\
+            make.\cf13 width\cf0 .\cf12 equalTo\cf0 (oneView);\
+        \}];\
+        lastSpaceView=spaceView;\
+    \}\
+    [lastSpaceView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 right\cf0 .\cf12 equalTo\cf0 (weakView.\cf13 mas_right\cf0 );\
+    \}];\
+\}\
+-(\cf6 void\cf0 )distributeSpacingVerticallyWith:(\cf7 NSArray\cf0  *)viewArray\{\
+    \cf7 NSMutableArray\cf0  *spacesMutableArray=[\cf7 NSMutableArray\cf0  \cf10 arrayWithCapacity\cf0 :viewArray.\cf7 count\cf0 +\cf11 1\cf0 ];\
+    \cf6 for\cf0  (\cf6 int\cf0  i=\cf11 0\cf0 ; i<viewArray.\cf7 count\cf0 +\cf11 1\cf0 ; ++i) \{\
+        \cf7 UIView\cf0  *myView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+        [spacesMutableArray \cf10 addObject\cf0 :myView];\
+        [\cf6 self\cf0  \cf10 addSubview\cf0 :myView];\
+        [myView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 width\cf0 .\cf12 equalTo\cf0 (myView.\cf13 mas_height\cf0 );\
+        \}];\
+    \}\
+    \cf7 UIView\cf0  *oneView=spacesMutableArray[\cf11 0\cf0 ];\
+    \cf6 __weak\cf0  \cf7 UIView\cf0  *weakView=\cf6 self\cf0 ;\
+    [oneView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 top\cf0 .\cf12 equalTo\cf0 (weakView.\cf13 mas_top\cf0 );\
+        make.\cf13 centerX\cf0 .\cf12 equalTo\cf0 (((\cf7 UIView\cf0  *)viewArray[\cf11 0\cf0 ]).\cf13 mas_centerX\cf0 );\
+    \}];\
+    \cf7 UIView\cf0  *lastSpaceView=oneView;\
+    \cf6 for\cf0  (\cf6 int\cf0  i=\cf11 0\cf0 ; i<viewArray.\cf7 count\cf0 ; ++i)\{\
+        \cf7 UIView\cf0  *changeView=viewArray[i];\
+        \cf7 UIView\cf0 *spaceView=spacesMutableArray[i+\cf11 1\cf0 ];\
+        [changeView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 top\cf0 .\cf12 equalTo\cf0 (lastSpaceView.\cf13 mas_bottom\cf0 );\
+        \}];\
+        [spaceView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 top\cf0 .\cf12 equalTo\cf0 (changeView.\cf13 mas_bottom\cf0 );\
+            make.\cf13 centerX\cf0 .\cf12 equalTo\cf0 (changeView.\cf13 mas_centerX\cf0 );\
+            make.\cf13 height\cf0 .\cf12 equalTo\cf0 (oneView);\
+        \}];\
+        lastSpaceView=spaceView;\
+    \}\
+    [lastSpaceView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 bottom\cf0 .\cf12 equalTo\cf0 (weakView.\cf13 mas_bottom\cf0 );\
+    \}];\
+\}\
+\cf6 @end
+\fs48 \cf0 \
+
+\f1\fs28 \cf8 \
+\
+\
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f0\b\fs48 \cf2 ViewController.m
+\f1\b0\fs28 \cf8 \
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f3 \cf5 #import \cf2 "ViewController.h"\cf5 \
+#import \cf2 "Masonry.h"\cf9 //
+\f1 \'b5\'bc\'c8\'eb
+\f3 Masonry.\cf0 \
+\cf5 #import \cf2 "UIView+Masonry_ZL.h"\cf5 \
+\cf6 @interface\cf0  \cf13 ViewController\cf0  ()\
+\cf6 @end\cf0 \
+\cf6 @implementation\cf0  ViewController\
+- (\cf6 void\cf0 )viewDidLoad \{\
+    [\cf6 super\cf0  \cf10 viewDidLoad\cf0 ];\
+\cf5 #pragma mark-
+\f1 \'c7\'eb\'bd\'e2\'b7\'e2\'a3\'a1
+\f3 \
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf9 //    [self demo1];\cf0 \
+\cf9 //    [self demo2];\cf0 \
+\cf9 //    [self demo3];\cf0 \
+\cf9 //    [self demo4];\cf0 \
+    [\cf6 self\cf0  \cf12 demo5\cf0 ];\
+\}\
+\cf9 //
+\f1 \'ca\'d7\'cf\'c8\'d4\'da
+\f3 Masonry
+\f1 \'d6\'d0\'c4\'dc\'b9\'bb\'cc\'ed\'bc\'d3
+\f3 autolayout
+\f1 \'d4\'bc\'ca\'f8\'d3\'d0\'c8\'fd\'b8\'f6\'ba\'af\'ca\'fd
+\f3 \cf0 \
+\cf9 /*- (NSArray *)mas_makeConstraints:(void(^)(MASConstraintMaker *make))block;\
+- (NSArray *)mas_updateConstraints:(void(^)(MASConstraintMaker *make))block;\
+- (NSArray *)mas_remakeConstraints:(void(^)(MASConstraintMaker *make))block;\
+\
+ mas_makeConstraints 
+\f1 \'d6\'bb\'b8\'ba\'d4\'f0\'d0\'c2\'d4\'f6\'d4\'bc\'ca\'f8
+\f3  Autolayout
+\f1 \'b2\'bb\'c4\'dc\'cd\'ac\'ca\'b1\'b4\'e6\'d4\'da\'c1\'bd\'cc\'f5\'d5\'eb\'b6\'d4\'d3\'da\'cd\'ac\'d2\'bb\'b6\'d4\'cf\'f3\'b5\'c4\'d4\'bc\'ca\'f8
+\f3  
+\f1 \'b7\'f1\'d4\'f2\'bb\'e1\'b1\'a8\'b4\'ed
+\f3 \
+ mas_updateConstraints 
+\f1 \'d5\'eb\'b6\'d4\'c9\'cf\'c3\'e6\'b5\'c4\'c7\'e9\'bf\'f6
+\f3  
+\f1 \'bb\'e1\'b8\'fc\'d0\'c2\'d4\'da
+\f3 block
+\f1 \'d6\'d0\'b3\'f6\'cf\'d6\'b5\'c4\'d4\'bc\'ca\'f8
+\f3  
+\f1 \'b2\'bb\'bb\'e1\'b5\'bc\'d6\'c2\'b3\'f6\'cf\'d6\'c1\'bd\'b8\'f6\'cf\'e0\'cd\'ac\'d4\'bc\'ca\'f8\'b5\'c4\'c7\'e9\'bf\'f6
+\f3 \
+ mas_remakeConstraints 
+\f1 \'d4\'f2\'bb\'e1\'c7\'e5\'b3\'fd\'d6\'ae\'c7\'b0\'b5\'c4\'cb\'f9\'d3\'d0\'d4\'bc\'ca\'f8
+\f3  
+\f1 \'bd\'f6\'b1\'a3\'c1\'f4\'d7\'ee\'d0\'c2\'b5\'c4\'d4\'bc\'ca\'f8
+\f3 \
+ 
+\f1 \'c8\'fd\'d6\'d6\'ba\'af\'ca\'fd\'c9\'c6\'bc\'d3\'c0\'fb\'d3\'c3
+\f3  
+\f1 \'be\'cd\'bf\'c9\'d2\'d4\'d3\'a6\'b6\'d4\'b8\'f7\'d6\'d6\'c7\'e9\'bf\'f6\'c1\'cb
+\f3 \
+ */\cf0 \
+\cf9 // mas_equalTo
+\f1 \'ca\'c7
+\f3 equalTo
+\f1 \'b5\'c4
+\f3 MACRO
+\f1 \'a3\'a8\'ba\'ea\'a3\'a9\'a3\'ac\'cb\'f9\'d6\'a7\'b3\'d6\'b5\'c4\'c0\'e0\'d0\'cd
+\f3  
+\f1 \'b3\'fd\'c1\'cb
+\f3 NSNumber
+\f1 \'d6\'a7\'b3\'d6\'b5\'c4\'c4\'c7\'d0\'a9\'ca\'fd\'d6\'b5\'c0\'e0\'d0\'cd\'d6\'ae\'cd\'e2
+\f3  
+\f1 \'be\'cd\'d6\'bb\'d6\'a7\'b3\'d6
+\f3 CGPoint CGSize UIEdgeInsets\
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf0 \
+-(\cf6 void\cf0 )demo1\cf9 //1. [
+\f1 \'bb\'f9\'b4\'a1
+\f3 ] 
+\f1 \'be\'d3\'d6\'d0\'cf\'d4\'ca\'be\'d2\'bb\'b8\'f6
+\f3 view\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f2\fs24 \cf0 \CocoaLigature1 {{\NeXTGraphic 屏幕快照 2016-05-23 上午9.15.30.png \width7560 \height13780
+}�}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f3\fs28 \cf0 \CocoaLigature0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf0 \{\
+    \cf6 __weak\cf0  \cf7 UIViewController\cf0  *selfController=\cf6 self\cf0 ;\
+    \cf7 UIView\cf0  *myView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    myView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 redColor\cf0 ];\
+    \cf9 //
+\f1 \'d4\'da\'d7\'f6
+\f3 autoLayout
+\f1 \'d6\'ae\'c7\'b0
+\f3  
+\f1 \'d2\'bb\'b6\'a8\'d2\'aa\'cf\'c8\'bd\'ab
+\f3 view
+\f1 \'cc\'ed\'bc\'d3\'b5\'bd
+\f3 superview
+\f1 \'c9\'cf
+\f3  
+\f1 \'b7\'f1\'d4\'f2\'bb\'e1\'b1\'a8\'b4\'ed
+\f3 \cf0 \
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :myView];\
+    \cf9 //mas_makeConstraints
+\f1 \'be\'cd\'ca\'c7
+\f3 Masonry
+\f1 \'b5\'c4
+\f3 autolayout
+\f1 \'cc\'ed\'bc\'d3\'ba\'af\'ca\'fd
+\f3  
+\f1 \'bd\'ab\'cb\'f9\'d0\'e8\'b5\'c4\'d4\'bc\'ca\'f8\'cc\'ed\'bc\'d3\'b5\'bd
+\f3 block
+\f1 \'d6\'d0\'d0\'d0\'c1\'cb
+\f3 \cf0 \
+    [myView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        \cf9 //
+\f1 \'bd\'ab
+\f3 sv
+\f1 \'be\'d3\'d6\'d0
+\f3 (
+\f1 \'ba\'dc\'c8\'dd\'d2\'d7\'c0\'ed\'bd\'e2\'b0\'c9
+\f3 ?)\cf0 \
+        make.\cf13 center\cf0 .\cf12 equalTo\cf0 (selfController.\cf7 view\cf0 );\
+        \cf9 //
+\f1 \'bd\'ab
+\f3 size
+\f1 \'c9\'e8\'d6\'c3\'b3\'c9
+\f3 (300,300)\cf0 \
+        make.\cf13 size\cf0 .\cf5 mas_equalTo\cf0 (\cf10 CGSizeMake\cf0 (\cf11 300\cf0 , \cf11 300\cf0 ));\
+    \}];\
+\}\
+\
+-(\cf6 void\cf0 )demo2\cf9 //2. [
+\f1 \'b3\'f5\'bc\'b6
+\f3 ] 
+\f1 \'c8\'c3\'d2\'bb\'b8\'f6
+\f3 view
+\f1 \'c2\'d4\'d0\'a1\'d3\'da\'c6\'e4
+\f3 superView(
+\f1 \'b1\'df\'be\'e0\'ce\'aa
+\f3 10)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f2\fs24 \cf0 \CocoaLigature1 {{\NeXTGraphic 屏幕快照 2016-05-23 上午9.15.58.png \width7540 \height13860
+}�}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f3\fs28 \cf0 \CocoaLigature0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf0 \{\
+    \cf6 __weak\cf0  \cf7 UIViewController\cf0  *selfController=\cf6 self\cf0 ;\
+    \cf7 UIView\cf0  *myView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    myView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 blueColor\cf0 ];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :myView];\
+    [myView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 edges\cf0 .\cf12 equalTo\cf0 (selfController.\cf7 view\cf0 ).\cf12 width\cf0 .\cf12 insets\cf0 (\cf10 UIEdgeInsetsMake\cf0 (\cf11 10\cf0 , \cf11 10\cf0 , \cf11 10\cf0 , \cf11 10\cf0 ));\
+        \cf9 //
+\f1 \'be\'cd\'d5\'e2\'d2\'bb\'be\'e4\'b4\'fa\'c2\'eb\'b5\'c8\'bc\'db\'c1\'cb\'cf\'c2\'c3\'e6\'b5\'c4\'cb\'c4\'be\'e4\'a1\'a3\'bc\'f2\'b5\'a5\'b0\'c9\'a3\'a1
+\f3 \cf0 \
+        \cf9 /* 
+\f1 \'b5\'c8\'bc\'db\'d3\'da
+\f3 \
+         make.top.equalTo(sv).with.offset(10);\
+         make.left.equalTo(sv).with.offset(10);\
+         make.bottom.equalTo(sv).with.offset(-10);\
+         make.right.equalTo(sv).with.offset(-10);\
+         */\cf0 \
+        \
+        \cf9 /* 
+\f1 \'d2\'b2\'b5\'c8\'bc\'db\'d3\'da
+\f3 \
+         make.top.left.bottom.and.right.equalTo(sv).with.insets(UIEdgeInsetsMake(10, 10, 10, 10));\
+             
+\f1 \'bf\'c9\'d2\'d4\'bf\'b4\'b5\'bd
+\f3  edges 
+\f1 \'c6\'e4\'ca\'b5\'be\'cd\'ca\'c7
+\f3 top,left,bottom,right
+\f1 \'b5\'c4\'d2\'bb\'b8\'f6\'bc\'f2\'bb\'af
+\f3  
+\f1 \'b7\'d6\'bf\'aa\'d0\'b4\'d2\'b2\'bf\'c9\'d2\'d4
+\f3  
+\f1 \'d2\'bb\'be\'e4\'bb\'b0\'b8\'fc\'ca\'a1\'ca\'c2
+\f3 \
+         */\cf0 \
+    \}];\
+\}\
+-(\cf6 void\cf0 )demo3\cf9 //3. [
+\f1 \'b3\'f5\'bc\'b6
+\f3 ] 
+\f1 \'c8\'c3\'c1\'bd\'b8\'f6\'b8\'df\'b6\'c8\'ce\'aa
+\f3 150
+\f1 \'b5\'c4
+\f3 view
+\f1 \'b4\'b9\'d6\'b1\'be\'d3\'d6\'d0\'c7\'d2\'b5\'c8\'bf\'ed\'c7\'d2\'b5\'c8\'bc\'e4\'b8\'f4\'c5\'c5\'c1\'d0
+\f3  
+\f1 \'bc\'e4\'b8\'f4\'ce\'aa
+\f3 10(
+\f1 \'d7\'d4\'b6\'af\'bc\'c6\'cb\'e3\'c6\'e4\'bf\'ed\'b6\'c8
+\f3 )\
+\pard\tx1155\pardeftab1155\pardirnatural
+
+\f2\fs24 \cf0 \CocoaLigature1 {{\NeXTGraphic 屏幕快照 2016-05-23 上午9.16.21.png \width7560 \height13840
+}�}\pard\tx1155\pardeftab1155\pardirnatural
+
+\f3\fs28 \cf0 \CocoaLigature0 \
+\{\
+    \cf6 __weak\cf0  \cf7 UIViewController\cf0  *selfController=\cf6 self\cf0 ;\
+    \cf7 UIView\cf0  *redView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    redView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 redColor\cf0 ];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :redView];\
+    \cf7 UIView\cf0  *blueView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    blueView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 blueColor\cf0 ];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :blueView];\
+    \cf6 int\cf0  jianGeLiang=\cf11 10\cf0 ;\
+    [redView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 centerY\cf0 .\cf5 mas_equalTo\cf0 (selfController.\cf7 view\cf0 .\cf13 mas_centerY\cf0 );\
+        make.\cf13 left\cf0 .\cf12 equalTo\cf0 (selfController.\cf7 view\cf0 .\cf13 mas_left\cf0 ).\cf12 with\cf0 .\cf12 offset\cf0 (jianGeLiang);\
+        make.\cf13 right\cf0 .\cf12 equalTo\cf0 (blueView.\cf13 mas_left\cf0 ).\cf12 with\cf0 .\cf12 offset\cf0 (-jianGeLiang);\
+        make.\cf13 height\cf0 .\cf5 mas_equalTo\cf0 (\cf11 @150\cf0 );\
+        make.\cf13 width\cf0 .\cf12 equalTo\cf0 (blueView);\
+    \}];\
+    [blueView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 centerY\cf0 .\cf5 mas_equalTo\cf0 (selfController.\cf7 view\cf0 .\cf13 mas_centerY\cf0 );\
+        make.\cf13 left\cf0 .\cf12 equalTo\cf0 (redView.\cf13 mas_right\cf0 ).\cf12 with\cf0 .\cf12 offset\cf0 (jianGeLiang);\
+        make.\cf13 right\cf0 .\cf12 equalTo\cf0 (selfController.\cf7 view\cf0 .\cf13 mas_right\cf0 ).\cf12 with\cf0 .\cf12 offset\cf0 (-jianGeLiang);\
+        make.\cf13 height\cf0 .\cf5 mas_equalTo\cf0 (\cf11 @150\cf0 );\
+        make.\cf13 width\cf0 .\cf12 equalTo\cf0 (redView);\
+    \}];\
+    \
+\}\
+-(\cf6 void\cf0 )demo4\cf9 //4. [
+\f1 \'d6\'d0\'bc\'b6
+\f3 ] 
+\f1 \'d4\'da
+\f3 UIScrollView
+\f1 \'cb\'b3\'d0\'f2\'c5\'c5\'c1\'d0\'d2\'bb\'d0\'a9
+\f3 view
+\f1 \'b2\'a2\'d7\'d4\'b6\'af\'bc\'c6\'cb\'e3
+\f3 contentSize\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f2\fs24 \cf0 \CocoaLigature1 {{\NeXTGraphic 屏幕快照 2016-05-23 上午9.16.42.png \width7560 \height13840
+}�}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f3\fs28 \cf0 \CocoaLigature0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf0 \{\
+    \cf6 __weak\cf0  \cf7 UIViewController\cf0  *selfController=\cf6 self\cf0 ;\
+    \cf7 UIScrollView\cf0  *scrollView=[\cf7 UIScrollView\cf0  \cf10 new\cf0 ];\
+    scrollView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 redColor\cf0 ];\
+    scrollView.\cf7 frame\cf0 =\cf6 self\cf0 .\cf7 view\cf0 .\cf7 frame\cf0 ;\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :scrollView];\
+    [scrollView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 edges\cf0 .\cf12 equalTo\cf0 (selfController.\cf7 view\cf0 ).\cf12 with\cf0 .\cf12 insets\cf0 (\cf10 UIEdgeInsetsMake\cf0 (\cf11 5\cf0 , \cf11 5\cf0 , \cf11 5\cf0 , \cf11 5\cf0 ));\
+    \}];\
+    \cf7 UIView\cf0  *containerView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    [scrollView \cf10 addSubview\cf0 :containerView];\
+    containerView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 blueColor\cf0 ];\
+    [containerView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 edges\cf0 .\cf12 equalTo\cf0 (scrollView);\
+        make.\cf13 width\cf0 .\cf12 equalTo\cf0 (scrollView);\
+    \}];\
+    \cf6 int\cf0  count=\cf11 10\cf0 ;\
+    \cf7 UIView\cf0  *lastView=\cf6 nil\cf0 ;\
+    \cf6 for\cf0  (\cf6 int\cf0  i=\cf11 1\cf0 ; i<=count; ++i)\
+    \{\
+        \cf7 UIView\cf0  *myView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+        [containerView \cf10 addSubview\cf0 :myView];\
+        myView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 colorWithHue\cf0 :(\cf10 arc4random\cf0 ()%\cf11 256\cf0 /\cf11 256.0\cf0 ) \cf10 saturation\cf0 :(\cf10 arc4random\cf0 ()%\cf11 128\cf0 /\cf11 256.0\cf0 )+\cf11 0.5\cf0  \cf10 brightness\cf0 :(\cf10 arc4random\cf0 ()%\cf11 128\cf0 /\cf11 256.0\cf0 )+\cf11 0.5\cf0  \cf10 alpha\cf0 :\cf11 1.0\cf0 ];\
+        [myView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+            make.\cf13 left\cf0 .\cf12 and\cf0 .\cf12 right\cf0 .\cf12 equalTo\cf0 (containerView);\
+            make.\cf13 height\cf0 .\cf5 mas_equalTo\cf0 (\cf11 @(20\cf0 *i\cf11 )\cf0 );\
+            \cf6 if\cf0  (lastView)\
+            \{\
+                make.\cf13 top\cf0 .\cf5 mas_equalTo\cf0 (lastView.\cf13 mas_bottom\cf0 );\
+            \}\
+            \cf6 else\cf0 \
+            \{\
+                make.\cf13 top\cf0 .\cf5 mas_equalTo\cf0 (containerView.\cf13 mas_top\cf0 );\
+            \}\
+        \}];\
+        lastView=myView;\
+    \}\
+    [containerView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 bottom\cf0 .\cf12 equalTo\cf0 (lastView.\cf13 mas_bottom\cf0 );\
+    \}];\
+\}\
+-(\cf6 void\cf0 )demo5\cf9 //5. [
+\f1 \'b8\'df\'bc\'b6
+\f3 ] 
+\f1 \'ba\'e1\'cf\'f2\'bb\'f2\'d5\'df\'d7\'dd\'cf\'f2\'b5\'c8\'bc\'e4\'cf\'b6\'b5\'c4\'c5\'c5\'c1\'d0\'d2\'bb\'d7\'e9
+\f3 view\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f2\fs24 \cf0 \CocoaLigature1 {{\NeXTGraphic 屏幕快照 2016-05-23 上午9.17.06.png \width7520 \height13800
+}�}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab1155\pardirnatural
+
+\f3\fs28 \cf0 \CocoaLigature0 \
+\pard\tx1155\pardeftab1155\pardirnatural
+\cf0 \{\
+    \cf7 UIView\cf0  *redView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    \cf7 UIView\cf0  *blackView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    \cf7 UIView\cf0  *blueView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    \cf7 UIView\cf0  *yellowView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    \cf7 UIView\cf0  *grayView=[\cf7 UIView\cf0  \cf10 new\cf0 ];\
+    redView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 redColor\cf0 ];\
+    blackView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 blackColor\cf0 ];\
+    blueView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 blueColor\cf0 ];\
+    yellowView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 yellowColor\cf0 ];\
+    grayView.\cf7 backgroundColor\cf0 =[\cf7 UIColor\cf0  \cf10 grayColor\cf0 ];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :redView];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :blackView];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :blueView];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :yellowView];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf10 addSubview\cf0 :grayView];\
+    \cf9 //
+\f1 \'b8\'f8\'b6\'a8\'b2\'bb\'cd\'ac\'b5\'c4\'b4\'f3\'d0\'a1
+\f3  
+\f1 \'b2\'e2\'ca\'d4\'d0\'a7\'b9\'fb
+\f3 \cf0 \
+    [redView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 centerY\cf0 .\cf12 equalTo\cf0 (\cf11 @[\cf0 blackView,blueView\cf11 ]\cf0 );\
+        make.\cf13 centerX\cf0 .\cf12 equalTo\cf0 (\cf11 @[\cf0 yellowView,grayView\cf11 ]\cf0 );\
+        make.\cf13 size\cf0 .\cf5 mas_equalTo\cf0 (\cf10 CGSizeMake\cf0 (\cf11 40\cf0 , \cf11 40\cf0 ));\
+    \}];\
+    [blackView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 size\cf0 .\cf5 mas_equalTo\cf0 (\cf10 CGSizeMake\cf0 (\cf11 70\cf0 , \cf11 20\cf0 ));\
+    \}];\
+    [blueView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 size\cf0 .\cf5 mas_equalTo\cf0 (\cf10 CGSizeMake\cf0 (\cf11 50\cf0 , \cf11 50\cf0 ));\
+    \}];\
+    [yellowView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 size\cf0 .\cf5 mas_equalTo\cf0 (\cf10 CGSizeMake\cf0 (\cf11 50\cf0 , \cf11 20\cf0 ));\
+    \}];\
+    [grayView \cf12 mas_makeConstraints\cf0 :^(\cf13 MASConstraintMaker\cf0  *make) \{\
+        make.\cf13 size\cf0 .\cf5 mas_equalTo\cf0 (\cf10 CGSizeMake\cf0 (\cf11 40\cf0 , \cf11 60\cf0 ));\
+    \}];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf12 distributeSpacingHorizontallyWith\cf0 :\cf11 @[\cf0 redView,blackView,blueView\cf11 ]\cf0 ];\
+    [\cf6 self\cf0 .\cf7 view\cf0  \cf12 distributeSpacingVerticallyWith\cf0 :\cf11 @[\cf0 redView,yellowView,grayView\cf11 ]\cf0 ];\
+\}\
+\cf6 @end\cf0 \
+
+\f1 \cf8 ************************************************************************************************************************************************************************************************************************************************************************************************************************\
+}
