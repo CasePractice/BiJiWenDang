@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg936\cocoartf1348\cocoasubrtf170
 {\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset134 STHeitiSC-Light;\f2\fswiss\fcharset0 Helvetica;
-\f3\fnil\fcharset0 Verdana;}
+\f3\fnil\fcharset0 Verdana;\f4\fnil\fcharset134 Weibei-SC-Bold;}
 {\colortbl;\red255\green255\blue255;\red217\green11\blue0;\red71\green204\blue252;\red170\green13\blue145;
 \red92\green38\blue153;\red85\green142\blue40;\red132\green221\blue253;\red46\green13\blue110;\red0\green116\blue0;
 \red63\green110\blue116;\red196\green26\blue22;\red102\green177\blue50;\red50\green98\blue178;\red28\green0\blue207;
@@ -64,6 +64,7 @@
 \f0 \cf0 \
 \pard\tx1155\pardeftab1155\pardirnatural
 \cf8 CFStringTransform\cf0 (cf_mString_family_name, \cf4 NULL\cf0 , \cf5 kCFStringTransformStripDiacritics\cf0 , \cf4 NO\cf0 );\
+\pard\tx1155\pardeftab1155\pardirnatural
 \cf5 NSString\cf0  *string_name = (\cf4 __bridge\cf0  \cf5 NSString\cf0  *)cf_mString_family_name;
 \f1\fs36 \
 
@@ -71,16 +72,20 @@
 \f0 \cf0 \cb1 \
 
 \fs28 image = [image \cf8 imageWithRenderingMode\cf0 :\cf8 UIImageRenderingModeAlwaysOriginal\cf0 ];\
+\pard\tx1155\pardeftab1155\pardirnatural
 
-\fs36 \
+\fs36 \cf0 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \f1\fs48 \cf2 \cb3 \'cf\'e0\'cd\'ac\'b6\'d4\'cf\'f3\'b5\'c4\'b4\'fa\'b1\'ed\'a3\'ac\'b3\'e9\'cf\'f3\'d7\'dc\'b6\'d4\'cf\'f3
 \f0\fs36 \cf0 \cb1 \
 
 \fs28 \cf5 UITabBarItem\cf0  *tabBar = [\cf5 UITabBarItem\cf0  \cf8 appearance\cf0 ];
 \f1 \cf6 //\'ca\'b9\'d3\'c3\'c1\'cb\'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8\'a3\'ac\'d7\'d4\'b5\'f7\'d3\'c3\'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8\'d2\'d4\'ba\'f3\'b6\'d4tabBar\'b5\'c4\'b2\'d9\'d7\'f7\'bd\'ab\'be\'df\'d3\'d0\'cf\'e0\'cd\'ac\'d0\'d4\
+\pard\tx1155\pardeftab1155\pardirnatural
 
-\fs36 \
+\fs36 \cf6 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \fs48 \cf2 \cb3 UItabBarItem\'c9\'e8\'d6\'c3\'d1\'a1\'d6\'d0\'d7\'b4\'cc\'ac\'cf\'c2\'cb\'f9\'d3\'d0Item\'b5\'c4\'d1\'d5\'c9\'ab
 \fs36 \cf6 \cb1 \
@@ -89,15 +94,19 @@
 \cf5 NSMutableDictionary\cf0 *titleTextDict=[\cf5 NSMutableDictionary\cf0  \cf8 dictionary\cf0 ];\
 titleTextDict[\cf5 NSForegroundColorAttributeName\cf0 ]=\cf10 color\cf0 ;\
 [allItem \cf8 setTitleTextAttributes\cf0 :titleTextDict \cf8 forState\cf0 :\cf8 UIControlStateSelected\cf0 ];\
+\pard\tx1155\pardeftab1155\pardirnatural
 
-\fs36 \
+\fs36 \cf0 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \f1\fs48 \cf2 \cb3 \'b8\'b8\'ca\'d3\'cd\'bc\'b5\'c4\'d7\'d3\'ca\'d3\'cd\'bc\'d3\'d0\'b1\'e4\'bb\'af\'be\'cd\'bb\'e1\'b5\'f7\'d3\'c3\'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8
 \f0\fs36 \cf0 \cb1 \
 
 \fs28 -(\cf4 void\cf0 )layoutSubviews\
+\pard\tx1155\pardeftab1155\pardirnatural
 
-\fs36 \
+\fs36 \cf0 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \fs48 \cf2 \cb3 URL
 \f1 \'d6\'d0\'d3\'d0\'d6\'d0\'ce\'c4\'a3\'ac\'bf\'c9\'d2\'d4\'d3\'c3\'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8\'d7\'aa\'bb\'bb
@@ -108,8 +117,10 @@ titleTextDict[\cf5 NSForegroundColorAttributeName\cf0 ]=\cf10 color\cf0 ;\
 \f0 \'94\cf0 ];\
 [url.\cf5 absoluteString\cf0  \cf8 stringByAddingPercentEscapesUsingEncoding\cf0 :\cf8 NSUTF8StringEncoding]
 \f1 \cf12 //\'cb\'fc\'d3\'d0\'d7\'d4\'b6\'af\'bc\'ec\'b2\'e2URL\'ca\'c7\'b7\'f1\'d5\'fd\'c8\'b7\'b5\'c4\'b9\'a6\'c4\'dc\'a3\'ac\'cb\'f9\'d2\'d4\'c4\'e3\'cc\'e1\'b9\'a9\'b5\'c4URL\'b1\'d8\'d0\'eb\'ca\'c7\'bf\'c9\'d0\'d0\'b5\'c4\
+\pard\tx1155\pardeftab1155\pardirnatural
 
-\fs36 \
+\fs36 \cf12 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \f0\fs48 \cf2 \cb3 push
 \f1 \'b5\'c4\'ca\'b1\'ba\'f2\'d2\'fe\'b2\'d8
@@ -118,8 +129,10 @@ titleTextDict[\cf5 NSForegroundColorAttributeName\cf0 ]=\cf10 color\cf0 ;\
 \f0 \cf0 \cb1 \
 
 \fs28 \cf4 self\cf0 .\cf5 hidesBottomBarWhenPushed\cf0  = \cf4 YES\cf0 ;\
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \fs36 \cf8 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \f1\fs48 \cf2 \cb3 \'c8\'e7\'ba\'ce\'c9\'e8\'d6\'c3\'cf\'fb\'cf\'a2\'bd\'e7\'c3\'e6
 \f0 messageViewController
@@ -129,8 +142,9 @@ titleTextDict[\cf5 NSForegroundColorAttributeName\cf0 ]=\cf10 color\cf0 ;\
 \f0\fs36 \cf8 \cb1 \
 
 \fs28 \cf0 tabBarItem.badgeValue\
+\pard\tx1155\pardeftab1155\pardirnatural
 
-\fs36 \
+\fs36 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab1155\pardirnatural
 
 \f1\fs48 \cf2 \cb3 \CocoaLigature1 GitHub\'b4\'fa\'c2\'eb\'b9\'e6\'b7\'b6
@@ -183,9 +197,11 @@ Objective-C-Coding-Style\cf1 \cb1 \
 
 \f1\fs48 \cf2 \cb3 \'c9\'e8\'d6\'c3\'b5\'a5\'d0\'d0\'b6\'cf\'d0\'d0
 \f0\fs28 \cf0 \cb1 \
+\pard\tx1155\pardeftab1155\pardirnatural
 \cf10 label\cf0 .\cf5 numberOfLines\cf0  = \cf14 1\cf0 ;\
 \cf10 label\cf0 .\cf5 lineBreakMode\cf0  = \cf8 NSLineBreakByTruncatingTail\
 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \fs48 \cf2 \cb3 NSURLConnection
 \f1 \'cd\'ac\'b2\'bd\'c7\'eb\'c7\'f3
@@ -229,6 +245,7 @@ Objective-C-Coding-Style\cf1 \cb1 \
 
 \fs48 \cf2 \cb3 GCD\'b7\'d6\'cf\'df\'b3\'cc\'bb\'d8\'d6\'f7\'cf\'df\'b3\'cc
 \fs28 \cf6 \cb1 \
+\pard\tx1155\pardeftab1155\pardirnatural
 
 \f0 \cf8 dispatch_async\cf0 (\cf8 dispatch_get_global_queue\cf0 (\cf17 DISPATCH_QUEUE_PRIORITY_DEFAULT\cf0 , \cf14 0\cf0 ), ^\
     \{
@@ -378,4 +395,14 @@ block\'c4\'da\'b5\'f7\'d3\'c3\'cd\'e2\'b2\'bf\'ca\'f4\'d0\'d4\'a3\'ac\'cd\'e2\'b
 
 \f2 \cf0 tableView
 \f1 \'b8\'b4\'d4\'d3\'b5\'c4\'bd\'e7\'c3\'e6\'ca\'b1\'a3\'ac\'d2\'aa\'cf\'c8\'bb\'b9\'d4\'ad\'bf\'d5\'bc\'e4\'b5\'c4\'c4\'ac\'c8\'cf\'d7\'b4\'cc\'ac\'a3\'ac\'d4\'d9\'b8\'b3\'d6\'b5\cf12 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab1155\pardirnatural
+
+\fs48 \cf2 \cb7 Mac\'ce\'c4\'bc\'fe\'b5\'c4\'d2\'fe\'b2\'d8\'ba\'cd\'cf\'d4\'ca\'be
+\fs24 \cf12 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803
+
+\f4\b\fs28 \cf0 \'cf\'d4\'ca\'beMac\'d2\'fe\'b2\'d8\'ce\'c4\'bc\'fe\'b5\'c4\'c3\'fc\'c1\'ee\'a3\'badefaults write com.apple.finder AppleShowAllFiles -bool true\
+\'d2\'fe\'b2\'d8Mac\'d2\'fe\'b2\'d8\'ce\'c4\'bc\'fe\'b5\'c4\'c3\'fc\'c1\'ee\'a3\'badefaults write com.apple.finder AppleShowAllFiles -bool false\
+\
 }
